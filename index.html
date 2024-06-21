@@ -45,11 +45,18 @@
             <p>Good morning, I hope you are doing well</p>
             <p>I want to tell you that you are beautiful from the inside and the outside</p>
         </div>
-        <button class="button" onclick="showPrize()">Click here for a prize</button>
+        <button class="button" id="prizeButton" onclick="showPrize()">Click here for a prize</button>
+        <p id="thanksMessage" style="display: none;">Thanks for trying</p>
     </div>
 
     <script>
         function showPrize() {
+            if (localStorage.getItem('hasClicked')) {
+                document.getElementById('prizeButton').style.display = 'none';
+                document.getElementById('thanksMessage').style.display = 'block';
+                return;
+            }
+
             const rand = Math.random();
             let prize;
             
@@ -62,6 +69,21 @@
             }
             
             alert(prize);
+
+            // Mark that the user has clicked
+            localStorage.setItem('hasClicked', 'true');
+            
+            // Hide the button and show the "Thanks for trying" message
+            document.getElementById('prizeButton').style.display = 'none';
+            document.getElementById('thanksMessage').style.display = 'block';
+        }
+
+        // Check if the user has already clicked
+        window.onload = function() {
+            if (localStorage.getItem('hasClicked')) {
+                document.getElementById('prizeButton').style.display = 'none';
+                document.getElementById('thanksMessage').style.display = 'block';
+            }
         }
     </script>
 </body>
