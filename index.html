@@ -45,7 +45,24 @@
             <p>Good morning, I hope you are doing well</p>
             <p>I want to tell you that you are beautiful from the inside and the outside</p>
         </div>
-        <button class="button" onclick="alert('You have won a prize!')">Click here for a prize</button>
+        <button class="button" onclick="showPrize()">Click here for a prize</button>
     </div>
+
+    <script>
+        function showPrize() {
+            const rand = Math.random();
+            let prize;
+            
+            if (rand < 0.6) {
+                prize = "Try Again";
+            } else if (rand < 0.75) {
+                prize = "You Won an Ice Tea drink";
+            } else {
+                prize = "You Won a Lipton Tea package";
+            }
+            
+            alert(prize);
+        }
+    </script>
 </body>
 </html>
